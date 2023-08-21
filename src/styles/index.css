@@ -48,10 +48,10 @@ input.neu {
         inset -5px -5px 10px #ffffff;
 }
 
-input:focus {
+/* input:focus {
     box-shadow: inset 5px 5px 50px #cacaca,
         inset -5px -5px 55px #ffffff;
-}
+} */
 
 button {
     font-size: calc(var(--font-size) - 4px);
@@ -93,6 +93,8 @@ button.neu:active {
     margin: auto;
     text-align: center;
     display: flexbox;
+    z-index: 1;
+    position: sticky;
 }
 
 #all-tasks {
@@ -127,18 +129,27 @@ button.neu:active {
 }
 
 .task-text {
-    max-height: 0;
-    opacity: 0;
+    /* max-height: 0; */
+    /* opacity: 80%; */
+
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     overflow: hidden;
     transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
 }
 
 .task-text.show {
+    white-space: normal; 
+    overflow: visible;
+    text-overflow: inherit;
+
     max-height: 500px;
     opacity: 1;
 }
 
-/* .task-keyboard {
+.task-keyboard {
     max-height: 0;
     opacity: 0;
     transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
@@ -146,4 +157,4 @@ button.neu:active {
 .task-keyboard.show {
     max-height: 500px;
     opacity: 1;
-} */
+}

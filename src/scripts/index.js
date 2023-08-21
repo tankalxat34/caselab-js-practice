@@ -44,7 +44,8 @@ var TaskField = {
      */
     fill: function () {
         if (Object.keys(localStorage).length) {
-            for (const id of Object.keys(localStorage)) {
+
+            for (const id of Object.keys(localStorage).sort()) {
                 this.add(localStorage.getItem(id), id);
             }
         }
@@ -62,7 +63,6 @@ var TaskField = {
         div_keyboard.style.marginLeft = "auto";
         div_keyboard.style.left = 0;
         div_keyboard.style.position = "inherit";
-        div_keyboard.hidden = true;
         div_keyboard.classList = "task-keyboard"
     
         let kb_complete = document.createElement("button");
@@ -77,13 +77,13 @@ var TaskField = {
         kb_delete.style.margin = "20px 5px";
         kb_delete.addEventListener("click", () => this.remove(TASK_ID));
         div_keyboard.appendChild(kb_delete);
+
+        kb_complete.hidden = true;
+        kb_delete.hidden = true;
     
         let div_text = document.createElement("div")
         div_text.classList = "task-text";
         div_text.innerText = task_text;
-        div_text.style.whiteSpace = "nowrap";
-        div_text.style.overflow = "hidden";
-        div_text.style.textOverflow = "ellipsis";
     
         let div = document.createElement("div");
         div.style.verticalAlign = "middle";
@@ -95,22 +95,19 @@ var TaskField = {
         div.appendChild(div_keyboard);
 
         div.addEventListener("click", () => {
-            div_keyboard.hidden = false;
-
-            div_text.style.whiteSpace = "normal";
-            div_text.style.overflow = "auto";
-            div_text.style.textOverflow = "clip";
-
+            kb_complete.hidden = false;
+            kb_delete.hidden = false;
+            
             div_text.classList.add("show");
+            div_keyboard.classList.add("show");
         });
         div.addEventListener("mouseleave", () => {
-            div_keyboard.hidden = true
-
-            div_text.style.whiteSpace = "nowrap";
-            div_text.style.overflow = "hidden";
-            div_text.style.textOverflow = "ellipsis";
-
             div_text.classList.remove("show");
+            div_keyboard.classList.remove("show");
+
+            kb_complete.hidden = true;
+            kb_delete.hidden = true;
+            
         });
 
         this.DOM.appendChild(div);
