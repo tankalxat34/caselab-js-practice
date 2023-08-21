@@ -1,0 +1,149 @@
+@font-face {
+    font-family: 'muli';
+    src: url('../fonts/7Auwp_0qiz-afTLGLQ.woff2');
+}
+
+:root {
+    /* Цвета */
+    --background: #e0e0e0;
+    --background-task: #e0e0e0;
+
+    --foreground: #253449;
+
+    /* Шрифты */
+    --font-size: 22px;
+    --font-size-i: 25px;
+    --font-family-0: muli, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family-0);
+}
+
+html {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-size: var(--font-size);
+    overflow-x: none;
+    height: 100vh;
+}
+
+input.neu {
+    font-size: 22px;
+    color: val(--foreground);
+
+    padding: 10px;
+
+    outline: none;
+    overflow: hidden;
+
+    border-color: white;
+    border-width: 0;
+    border-radius: 20px;
+    background: #ebebeb;
+    box-shadow: inset 5px 5px 10px #cacaca,
+        inset -5px -5px 10px #ffffff;
+}
+
+input:focus {
+    box-shadow: inset 5px 5px 50px #cacaca,
+        inset -5px -5px 55px #ffffff;
+}
+
+button {
+    font-size: calc(var(--font-size) - 4px);
+}
+
+div.neu {
+    padding: 2% 3%;
+}
+
+div.neu:hover {
+    /* transform: scale(1.001); */
+    /* transition: transform 0.25s all; */
+    box-shadow: 25px 25px 44px #cacaca,
+        -25px -25px 44px #ffffff;
+}
+
+button.neu {
+    border-width: 0;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px #cacaca,
+        -5px -5px 10px #ffffff;
+}
+
+button.neu:hover {
+    box-shadow: 10px 10px 32px #cacaca,
+        -10px -10px 32px #ffffff;
+}
+
+button.neu:active {
+    background-color: aliceblue;
+    box-shadow: 10px 10px 32px #cacaca inset,
+        -10px -10px 32px #ffffff inset;
+}
+
+/* Идентификация по id */
+
+#input-field {
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+    display: flexbox;
+}
+
+#all-tasks {
+    margin: auto;
+    width: 90%;
+}
+
+#task-field-nothing {
+    text-align: center;
+    color: grey;
+}
+
+/* Идентификация по class */
+.m-0 {
+    margin: 0;
+}
+
+.neu {
+    margin: 20px;
+    padding: 15px;
+
+    transition: all 0.25s ease-in-out;
+
+    border-radius: 17px;
+    background: #ebebeb;
+    box-shadow: 10px 10px 20px #cacaca,
+        -10px -10px 20px #ffffff;
+}
+
+.neu.m0 {
+    margin: 0;
+}
+
+.task-text {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.task-text.show {
+    max-height: 500px;
+    opacity: 1;
+}
+
+/* .task-keyboard {
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+}
+.task-keyboard.show {
+    max-height: 500px;
+    opacity: 1;
+} */

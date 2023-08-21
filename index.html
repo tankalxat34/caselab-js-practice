@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <meta content="true" name="HandheldFriendly" />
+    <meta content="width" name="MobileOptimized" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <link rel="stylesheet" href="./src/styles/index.css">
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <title></title>
+</head>
+<body>
+
+    <div style="margin: 5% 2%; text-align: center;" id="top">
+        <h1>ToDo List Manager</h1>
+        <p>Save and manage your tasks in Neumorphism style💙</p>
+        <div>
+            <button class="neu">About project</button>
+        </div>
+    </div>
+    
+    <div id="all-tasks">
+        <h2 id="h2-actual_tasks">Actual tasks</h2>
+        <div id="task-field">
+            <p id="task-field-nothing" style="display: auto;">Nothing to show...</p>
+        </div>
+
+    </div>
+
+    <div id="input-field">
+        <input class="neu" type="text" name="user-input" id="user-input" style="width: 80vw;" placeholder="Write task right here...">
+        <!-- <button id="button-addtolist" class="neu m0"><span class="i">+</span>Add</button> -->
+    </div>
+
+
+    <script src="./src/scripts/index.js"></script>
+</body>
+
+</html>
