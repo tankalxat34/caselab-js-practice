@@ -81,30 +81,26 @@ button.neu:hover {
 }
 
 button.neu:active {
-    background-color: aliceblue;
-    box-shadow: 10px 10px 32px #cacaca inset,
-        -10px -10px 32px #ffffff inset;
+    background: #ebebeb;
+    box-shadow: inset 5px 5px 10px #cacaca,
+        inset -5px -5px 10px #ffffff;
 }
 
 /* Идентификация по id */
 
 #input-field {
-    bottom: 0;
+    bottom: 1%;
     margin: auto;
     text-align: center;
     display: flexbox;
     z-index: 1;
     position: sticky;
+    width: max-content;
 }
 
 #all-tasks {
     margin: auto;
     width: 90%;
-}
-
-#task-field-nothing {
-    text-align: center;
-    color: grey;
 }
 
 /* Идентификация по class */
@@ -128,33 +124,65 @@ button.neu:active {
     margin: 0;
 }
 
+.h2-task-type {
+    text-align: center;
+    color: grey;
+    margin: 7%;
+}
+
+.taskelem {
+    height: 3em;
+    opacity: 80%;
+    cursor: pointer;
+    /* vertical-align: middle; */
+    transition: height 0.2s ease-out, opacity 0.8s ease-out;
+
+}
+
+.taskelem.show {
+    height: 7em;
+    opacity: 1;
+    cursor: auto;
+}
+
+.taskelem.scale {
+    transform: scale(1.1);
+}
+
+
+.task-keyboard {
+    opacity: 0;
+    transition: opacity .19s ease-out;
+}
+
+.task-keyboard.show {
+    opacity: 1;
+}
+
+
 .task-text {
     /* max-height: 0; */
-    /* opacity: 80%; */
+    opacity: .9;
+    max-height: 6.1vh;
 
-    white-space: nowrap; 
+
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 
     overflow: hidden;
-    transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+    transition: max-height 0.4s ease-in-out, opacity 0.4s ease-out;
 }
 
 .task-text.show {
-    white-space: normal; 
+    white-space: normal;
     overflow: visible;
     text-overflow: inherit;
 
-    max-height: 500px;
+    max-height: 15vh;
     opacity: 1;
 }
 
-.task-keyboard {
-    max-height: 0;
-    opacity: 0;
-    transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
-}
-.task-keyboard.show {
-    max-height: 500px;
-    opacity: 1;
+.i {
+    font-weight: 900;
 }

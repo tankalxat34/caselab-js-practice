@@ -17,21 +17,29 @@
         <h1>ToDo List Manager</h1>
         <p>Save and manage your tasks in Neumorphism style💙</p>
         <div>
-            <button class="neu">About project</button>
+            <button id="kbmain-show-even" class="neu m0" style="margin: 3% 7px;">Show even-numbered</button>
+            <button id="kbmain-show-odd" class="neu m0" style="margin: 3% 7px;">Show the odd ones</button>
+            <button id="kbmain-shift" class="neu m0" style="margin: 3% 7px;">Shift</button>
+            <button id="kbmain-pop" class="neu m0" style="margin: 3% 7px;">Pop</button>
         </div>
     </div>
     
     <div id="all-tasks">
         <h2 id="h2-actual_tasks">Actual tasks</h2>
         <div id="task-field">
-            <p id="task-field-nothing" style="display: auto;">Nothing to show...</p>
+            <p id="task-field-nothing" class="h2-task-type" style="display: inherit;">Nothing to show here...</p>
+        </div>
+
+        <h2 id="h2-completed_tasks">Completed tasks</h2>
+        <div id="completed-task">
+            <p id="task-field-completed_nothing" class="h2-task-type" style="display: inherit;">Nothing to show here...</p>
         </div>
 
     </div>
 
-    <div id="input-field">
-        <input class="neu" type="text" name="user-input" id="user-input" style="width: 80vw;" placeholder="Write task right here...">
-        <!-- <button id="button-addtolist" class="neu m0"><span class="i">+</span>Add</button> -->
+    <div id="input-field" style="width: fit-content;">
+        <input class="neu m0" type="text" name="user-input" id="user-input" placeholder="Write here...">
+        <button id="button-addtolist" class="neu m0"><span class="i">+</span> Add</button>
     </div>
 
 
