@@ -48,11 +48,6 @@ input.neu {
         inset -5px -5px 10px #ffffff;
 }
 
-/* input:focus {
-    box-shadow: inset 5px 5px 50px #cacaca,
-        inset -5px -5px 55px #ffffff;
-} */
-
 button {
     font-size: calc(var(--font-size) - 4px);
 }
@@ -62,8 +57,6 @@ div.neu {
 }
 
 div.neu:hover {
-    /* transform: scale(1.001); */
-    /* transition: transform 0.25s all; */
     box-shadow: 25px 25px 44px #cacaca,
         -25px -25px 44px #ffffff;
 }
@@ -76,8 +69,8 @@ button.neu {
 }
 
 button.neu:hover {
-    box-shadow: 10px 10px 32px #cacaca,
-        -10px -10px 32px #ffffff;
+    box-shadow: 3.5px 3.5px 10px #cacaca,
+        -3.5px -3.5px 10px #ffffff;
 }
 
 button.neu:active {
@@ -89,13 +82,14 @@ button.neu:active {
 /* Идентификация по id */
 
 #input-field {
-    bottom: 1%;
+    bottom: 0;
     margin: auto;
     text-align: center;
     display: flexbox;
     z-index: 1;
     position: sticky;
-    width: max-content;
+    width: fit-content;
+    /* background-color: black; */
 }
 
 #all-tasks {
@@ -132,10 +126,11 @@ button.neu:active {
 
 .taskelem {
     height: 3em;
-    opacity: 80%;
+    opacity: .75;
     cursor: pointer;
-    /* vertical-align: middle; */
-    transition: height 0.2s ease-out, opacity 0.8s ease-out;
+    transition: height 0.2s ease-out, 
+        opacity 0.2s ease-out, 
+        box-shadow 0.3s ease-out;
 
 }
 
@@ -151,27 +146,30 @@ button.neu:active {
 
 
 .task-keyboard {
+    display: none;
     opacity: 0;
     transition: opacity .19s ease-out;
 }
 
 .task-keyboard.show {
+    display: block;
     opacity: 1;
 }
 
 
 .task-text {
-    /* max-height: 0; */
     opacity: .9;
     max-height: 6.1vh;
-
 
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-weight: 400;
 
     overflow: hidden;
-    transition: max-height 0.4s ease-in-out, opacity 0.4s ease-out;
+    transition: max-height 0.4s ease-in-out, 
+        opacity 0.4s ease-out,
+        font-weight 0.2s ease-in-out;
 }
 
 .task-text.show {
@@ -179,8 +177,22 @@ button.neu:active {
     overflow: visible;
     text-overflow: inherit;
 
+    font-weight: 500;
+
+
     max-height: 15vh;
     opacity: 1;
+}
+
+.line-through {
+    text-decoration: line-through;
+    font-weight: 100;
+}
+
+.selection {
+    border-width: 50px;
+    border-color: #ff8c00;
+    transform: scale(1);
 }
 
 .i {
