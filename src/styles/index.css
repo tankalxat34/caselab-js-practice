@@ -57,10 +57,6 @@ button {
     font-size: calc(var(--font-size) - 4px);
 }
 
-div.neu {
-    padding: 2% 3%;
-}
-
 div.neu:hover {
     /* box-shadow: 25px 25px 44px #cacaca,
         -25px -25px 44px #ffffff; */
@@ -120,9 +116,6 @@ button.neu:active {
 
     min-width: 15%;
     cursor: pointer;
-
-    /* box-shadow: 5px 5px 10px #cacaca,
-        -5px -5px 10px #ffffff; */
 }
 
 #input-field button:active {
@@ -142,7 +135,7 @@ button.neu:active {
 }
 
 .neu {
-    margin: 20px;
+    margin: 17px;
     padding: 15px;
 
     transition: all 0.25s ease-in-out;
@@ -164,17 +157,19 @@ button.neu:active {
 }
 
 .taskelem {
-    height: 3em;
+    height: 80px;
+    padding: 25px;
+
     opacity: .75;
     cursor: pointer;
-    transition: height 0.2s ease-out, 
-        opacity 0.2s ease-out, 
-        box-shadow 0.3s ease-out;
-
+    transition: all 0.2s ease-out;
 }
 
 .taskelem.show {
-    height: 7em;
+    padding: 25px;
+
+    height: 300px;
+    min-height: fit-content;
     opacity: 1;
     cursor: auto;
 }
@@ -228,12 +223,8 @@ button.neu:active {
     font-weight: 100;
 }
 
-div.selection {
+div.taskelem.selection {
     transform: scale3d(1.1, 1.1, 1.1);
-    /* border-width: 50px;
-    border-color: #ff8c00;
-    transform: scale(1);
-    font-weight: 900; */
 }
 
 .i {

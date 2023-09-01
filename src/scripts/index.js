@@ -4,6 +4,8 @@ var userinput = document.querySelector("#user-input");
 var p_nothing = document.querySelector("#task-field-nothing");
 var p_completed_nothing = document.querySelector("#task-field-completed_nothing");
 
+const MAX_LENGTH = 100;
+
 
 /**
  * Implementation of task field
@@ -120,6 +122,14 @@ var TaskField = {
         div.appendChild(div_text);
         div.appendChild(div_keyboard);
 
+        div.addEventListener("dblclick", () => {
+            if (TASK_ID > 0) {
+                this.complete(TASK_ID);
+            } else {
+                this.rm(TASK_ID);
+            }
+        });
+
         div.addEventListener("click", () => {
             div.classList.add("show");
             div_text.classList.add("show");
@@ -142,7 +152,7 @@ var TaskField = {
     },
 
     /**
-     * Save task to local storage
+     * Save task to local storage and draw it on field
      * @param {Number} task_id The task's id
      * @param {String} task_text The task's text
      * @param {Element} DOM_field Field where needs to place the task
@@ -180,8 +190,11 @@ var TaskField = {
     },
 
     addByUserInput: function () {
-        if (userinput.value && userinput.value.length <= 200) {
+        if (userinput.value && userinput.value.length <= MAX_LENGTH) {
             TaskField.saveToLocalStorage(new Date().getTime(), userinput.value, TaskField.DOM);
+            userinput.value = new String();
+        } else {
+            alert(`You can't save empty task or your task has more than ${MAX_LENGTH} symbols`);
             userinput.value = new String();
         }
     },
@@ -223,7 +236,7 @@ window.onload = () => {
     document.querySelector("#kbmain-show-even").addEventListener("click", TaskField.markOnlyEven);
     document.querySelector("#kbmain-show-odd").addEventListener("click", TaskField.markOnlyOdd);
 
-    document.querySelector("#kb-manage_fields").addEventListener("mouseleave", TaskField.unmarkSelection)
+    document.querySelector("#kb-manage_fields").addEventListener("mouseleave", TaskField.unmarkSelection);
 }
 
 userinput.addEventListener("keydown", (e) => {
