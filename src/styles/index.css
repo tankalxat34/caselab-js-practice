@@ -29,6 +29,11 @@ html {
     font-size: var(--font-size);
     overflow-x: none;
     height: 100vh;
+    padding-bottom: 10%;
+}
+
+h2 {
+    margin-top: 30px;
 }
 
 input.neu {
@@ -57,15 +62,17 @@ div.neu {
 }
 
 div.neu:hover {
-    box-shadow: 25px 25px 44px #cacaca,
-        -25px -25px 44px #ffffff;
+    /* box-shadow: 25px 25px 44px #cacaca,
+        -25px -25px 44px #ffffff; */
+    box-shadow: 2px 2px 4px #cacaca,
+        -2px -2px 4px #ffffff;
 }
 
 button.neu {
     border-width: 0;
     cursor: pointer;
-    box-shadow: 5px 5px 10px #cacaca,
-        -5px -5px 10px #ffffff;
+    box-shadow: 5px 5px 7px #cacaca,
+        -5px -5px 7px #ffffff;
 }
 
 button.neu:hover {
@@ -79,18 +86,50 @@ button.neu:active {
         inset -5px -5px 10px #ffffff;
 }
 
+
 /* Идентификация по id */
 
 #input-field {
-    bottom: 0;
-    margin: auto;
+    margin: 0;
     text-align: center;
     display: flexbox;
     z-index: 1;
-    position: sticky;
-    width: fit-content;
-    /* background-color: black; */
+
+    position: relative;
+    display: inline-block;
+    width: auto;
+    justify-content: center;
 }
+
+#input-field input {
+    padding: 10px 20px;
+    width: 85vw;
+}
+
+#input-field button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 5px 0;
+
+    border-color: none;
+    border-radius: 10px;
+    border-width: 0;
+    background-color: #00000000;
+    font-size: calc(var(--font-size) + 4px);
+
+    min-width: 15%;
+    cursor: pointer;
+
+    /* box-shadow: 5px 5px 10px #cacaca,
+        -5px -5px 10px #ffffff; */
+}
+
+#input-field button:active {
+    box-shadow: inset 5px 5px 10px #cacaca,
+        inset -5px -5px 10px #ffffff;
+}
+
 
 #all-tasks {
     margin: auto;
@@ -110,8 +149,8 @@ button.neu:active {
 
     border-radius: 17px;
     background: #ebebeb;
-    box-shadow: 10px 10px 20px #cacaca,
-        -10px -10px 20px #ffffff;
+    box-shadow: 5px 5px 10px #cacaca,
+        -5px -5px 10px #ffffff;
 }
 
 .neu.m0 {
@@ -189,12 +228,18 @@ button.neu:active {
     font-weight: 100;
 }
 
-.selection {
-    border-width: 50px;
+div.selection {
+    transform: scale3d(1.1, 1.1, 1.1);
+    /* border-width: 50px;
     border-color: #ff8c00;
     transform: scale(1);
+    font-weight: 900; */
 }
 
 .i {
     font-weight: 900;
+}
+
+.center-container {
+    text-align: center;
 }

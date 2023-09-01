@@ -9,19 +9,22 @@ var p_completed_nothing = document.querySelector("#task-field-completed_nothing"
  * Implementation of task field
  */
 var TaskField = {
-    DOM: document.querySelector("#task-field"),
-    DOM_COMPLETED: document.querySelector("#task-field-completed"),
+    DOM: document.querySelector("#task-field > #task-field-nothing"),
+    DOM_COMPLETED: document.querySelector("#task-field-completed > #task-field-completed_nothing"),
+
+    DOM_FIELD_ACTUAL: document.querySelector("#task-field"),
+    DOM_FIELD_COMPLETED: document.querySelector("#task-field-completed"),
 
     getChilds: function () {
         return document.querySelectorAll("div.taskelem");
     },
 
     count: function () {
-        return this.DOM.childElementCount - 1;
+        return this.DOM_FIELD_ACTUAL.childElementCount - 1;
     },
 
     countCompleted: function () {
-        return this.DOM_COMPLETED.childElementCount - 1;
+        return this.DOM_FIELD_COMPLETED.childElementCount - 1;
     },
 
     updateView: function (scroll_status = true) {
@@ -101,7 +104,7 @@ var TaskField = {
         kb_delete.addEventListener("click", () => this.rm(TASK_ID));
         div_keyboard.appendChild(kb_delete);
 
-        let div_text = document.createElement("div")
+        let div_text = document.createElement("div");
         div_text.classList = "task-text";
         div_text.innerText = task_text;
 
@@ -128,8 +131,12 @@ var TaskField = {
             div_keyboard.classList.remove("show");
         });
 
-        DOM_field.appendChild(div);
-        this.updateView();
+        if (DOM_field === this.DOM) {
+            DOM_field.after(div);
+        } else if (DOM_field === this.DOM_COMPLETED) {
+            DOM_field.before(div);
+        }
+        this.updateView(false);
 
         return TASK_ID;
     },
@@ -148,14 +155,14 @@ var TaskField = {
      * Remove the first task from field
      */
     shift: function () {
-        TaskField.rm(new Number(Object.keys(localStorage).sort().shift()));
+        TaskField.rm(new Number(Object.keys(localStorage).sort().pop()));
     },
-
+    
     /**
      * Remove the last task from field
-     */
-    pop: function () {
-        TaskField.rm(new Number(Object.keys(localStorage).sort().pop()));
+    */
+   pop: function () {
+        TaskField.rm(new Number(Object.keys(localStorage).sort().shift()));
     },
 
     /**
@@ -195,6 +202,12 @@ var TaskField = {
             if (i % 2 != 0) el.classList.add("selection");
             i++;
         });
+    },
+
+    unmarkSelection: function () {
+        TaskField.getChilds().forEach(el => {
+            el.classList.remove("selection");
+        });
     }
 }
 
@@ -209,6 +222,8 @@ window.onload = () => {
     document.querySelector("#kbmain-pop").addEventListener("click", TaskField.pop);
     document.querySelector("#kbmain-show-even").addEventListener("click", TaskField.markOnlyEven);
     document.querySelector("#kbmain-show-odd").addEventListener("click", TaskField.markOnlyOdd);
+
+    document.querySelector("#kb-manage_fields").addEventListener("mouseleave", TaskField.unmarkSelection)
 }
 
 userinput.addEventListener("keydown", (e) => {

@@ -16,11 +16,18 @@
     <div style="margin: 5% 2%; text-align: center;" id="top">
         <h1>ToDo List Manager</h1>
         <p>Save and manage your tasks in Neumorphism style💙</p>
-        <div>
+        <div id="kb-manage_fields">
             <button id="kbmain-show-even" class="neu m0" style="margin: 3% 7px;">Show even-numbered</button>
             <button id="kbmain-show-odd" class="neu m0" style="margin: 3% 7px;">Show the odd ones</button>
             <button id="kbmain-shift" class="neu m0" style="margin: 3% 7px;">Shift</button>
             <button id="kbmain-pop" class="neu m0" style="margin: 3% 7px;">Pop</button>
+        </div>
+    </div>
+
+    <div class="center-container">
+        <div id="input-field" style="margin: auto;">
+            <input class="neu m0" type="text" name="user-input" id="user-input" placeholder="Write here...">
+            <button id="button-addtolist" class="m0"><span class="i">+</span></button>
         </div>
     </div>
     
@@ -36,12 +43,6 @@
         </div>
 
     </div>
-
-    <div id="input-field" style="width: fit-content;">
-        <input class="neu m0" type="text" name="user-input" id="user-input" placeholder="Write here...">
-        <button id="button-addtolist" class="neu m0"><span class="i">+</span> Add</button>
-    </div>
-
 
     <script src="./src/scripts/index.js"></script>
 </body>
