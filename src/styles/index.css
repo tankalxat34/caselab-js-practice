@@ -4,13 +4,13 @@
 }
 
 :root {
-    /* Цвета */
+    /* Colors */
     --background: #e0e0e0;
     --background-task: #e0e0e0;
 
     --foreground: #253449;
 
-    /* Шрифты */
+    /* Fonts */
     --font-size: 22px;
     --font-size-i: 25px;
     --font-family-0: muli, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -36,6 +36,22 @@ h2 {
     margin-top: 30px;
 }
 
+footer {
+    margin: auto;
+    padding: 5%;
+    text-align: center;
+}
+
+a {
+    color: #326fb0;
+    text-decoration: none;
+    transition: all .6s;
+}
+
+a:hover {
+    color: #52a6ff;
+}
+
 input.neu {
     font-size: 22px;
     color: val(--foreground);
@@ -58,8 +74,6 @@ button {
 }
 
 div.neu:hover {
-    /* box-shadow: 25px 25px 44px #cacaca,
-        -25px -25px 44px #ffffff; */
     box-shadow: 2px 2px 4px #cacaca,
         -2px -2px 4px #ffffff;
 }
@@ -153,7 +167,7 @@ button.neu:active {
 .h2-task-type {
     text-align: center;
     color: grey;
-    margin: 7%;
+    margin: 3%;
 }
 
 .taskelem {

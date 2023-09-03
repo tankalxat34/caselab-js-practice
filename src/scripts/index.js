@@ -4,6 +4,9 @@ var userinput = document.querySelector("#user-input");
 var p_nothing = document.querySelector("#task-field-nothing");
 var p_completed_nothing = document.querySelector("#task-field-completed_nothing");
 
+/**
+ * How many symbols could be on the task's text
+ */
 const MAX_LENGTH = 100;
 
 
@@ -11,25 +14,27 @@ const MAX_LENGTH = 100;
  * Implementation of task field
  */
 var TaskField = {
+    /**
+     * Place where new tasks will be show
+     */
     DOM: document.querySelector("#task-field > #task-field-nothing"),
+
+    /**
+     * Place where completed tasks will be show
+     */
     DOM_COMPLETED: document.querySelector("#task-field-completed > #task-field-completed_nothing"),
 
+    /**
+     * Field to count
+     */
     DOM_FIELD_ACTUAL: document.querySelector("#task-field"),
     DOM_FIELD_COMPLETED: document.querySelector("#task-field-completed"),
-
-    getChilds: function () {
-        return document.querySelectorAll("div.taskelem");
-    },
-
-    count: function () {
-        return this.DOM_FIELD_ACTUAL.childElementCount - 1;
-    },
-
-    countCompleted: function () {
-        return this.DOM_FIELD_COMPLETED.childElementCount - 1;
-    },
-
-    updateView: function (scroll_status = true) {
+    
+    /**
+     * Procedure to update all nesessary paramethers such as titles, headers, etc. This procedure should be called at the end of any CRUD function
+     * @param {Boolean} scroll_status Set this as `true` when you need scroll to bottom page
+     */
+    _updateView: function (scroll_status = true) {
         if (this.count()) {
             p_nothing.style.display = "none";
             document.title = `(${this.count()} task${this.count() === 1 ? '' : 's'}) - ToDo Manager`;
@@ -49,7 +54,48 @@ var TaskField = {
     },
 
     /**
-     * Remove task from field by its id
+     * Get all actual tasks
+     * @returns Array
+     */
+    _getActualTasks: function () {
+        return new Array(...document.querySelectorAll("#task-field > div.taskelem"));
+    },
+
+    /**
+     * Get all completed tasks
+     * @returns Array
+     */
+    _getCompletedTasks: function () {
+        return new Array(...document.querySelectorAll("#task-field-completed > div.taskelem"));
+    },
+
+    /**
+     * Return all tasks as DOM elements
+     * @returns NodeListOf<Element>
+     */
+    getChilds: function () {
+        return document.querySelectorAll("div.taskelem");
+    },
+
+    /**
+     * Return the count of actual tasks
+     * @returns Number
+     */
+    count: function () {
+        return this.DOM_FIELD_ACTUAL.childElementCount - 1;
+    },
+
+    /**
+     * Return the count of completeв tasks
+     * @returns Number
+     */
+    countCompleted: function () {
+        return this.DOM_FIELD_COMPLETED.childElementCount - 1;
+    },
+
+
+    /**
+     * Remove task from field and `localStorage` by its id
      * @param {Number} task_id task's id
      */
     rm: function (task_id) {
@@ -59,7 +105,7 @@ var TaskField = {
             task.remove();
             localStorage.removeItem(task_id);
     
-            this.updateView(false);
+            this._updateView(false);
         }
     },
 
@@ -146,7 +192,7 @@ var TaskField = {
         } else if (DOM_field === this.DOM_COMPLETED) {
             DOM_field.before(div);
         }
-        this.updateView(false);
+        this._updateView(false);
 
         return TASK_ID;
     },
@@ -162,17 +208,41 @@ var TaskField = {
     },
 
     /**
+     * Get the number of the **first** task from actual or completed
+     * @returns The number of the **first** task from actual or completed 
+     */
+    getFirstTaskId: function () {
+        if (TaskField._getActualTasks().length) {
+            return new Number((TaskField._getActualTasks().slice(0, 1)[0]).getAttribute("data-task_id"));
+        } else {
+            return new Number((TaskField._getCompletedTasks().slice(0, 1)[0]).getAttribute("data-task_id"));
+        }
+    },
+
+    /**
+     * Get the number of the **last** task from actual or completed
+     * @returns The number of the **last** task from actual or completed 
+     */
+    getLastTaskId: function () {
+        if (TaskField._getCompletedTasks().length) {
+            return new Number((TaskField._getCompletedTasks().slice(TaskField._getCompletedTasks().length - 1)[0]).getAttribute("data-task_id"));
+        } else {
+            return new Number((TaskField._getActualTasks().slice(TaskField._getActualTasks().length - 1)[0]).getAttribute("data-task_id"));
+        }
+    },
+
+    /**
      * Remove the first task from field
      */
     shift: function () {
-        TaskField.rm(new Number(Object.keys(localStorage).sort().pop()));
+        TaskField.rm(TaskField.getFirstTaskId());
     },
     
     /**
      * Remove the last task from field
     */
    pop: function () {
-        TaskField.rm(new Number(Object.keys(localStorage).sort().shift()));
+        TaskField.rm(TaskField.getLastTaskId());
     },
 
     /**
@@ -189,6 +259,9 @@ var TaskField = {
         this.saveToLocalStorage(completed_task_id, task_text.innerText, this.DOM_COMPLETED);
     },
 
+    /**
+     * Create task by user's text: save it into local storage and draw it in the field
+     */
     addByUserInput: function () {
         if (userinput.value && userinput.value.length <= MAX_LENGTH) {
             TaskField.saveToLocalStorage(new Date().getTime(), userinput.value, TaskField.DOM);
@@ -199,6 +272,9 @@ var TaskField = {
         }
     },
 
+    /**
+     * Method to mark only even tasks
+     */
     markOnlyEven: function () {
         let i = 0;
         TaskField.getChilds().forEach(el => {
@@ -208,6 +284,9 @@ var TaskField = {
         });
     },
 
+    /**
+     * Method to mark only odd tasks
+     */
     markOnlyOdd: function () {
         let i = 0;
         TaskField.getChilds().forEach(el => {
@@ -217,6 +296,9 @@ var TaskField = {
         });
     },
 
+    /**
+     * Method to unmark all tasks
+     */
     unmarkSelection: function () {
         TaskField.getChilds().forEach(el => {
             el.classList.remove("selection");
@@ -227,7 +309,7 @@ var TaskField = {
 
 
 TaskField.fill();
-TaskField.updateView();
+TaskField._updateView();
 
 window.onload = () => {
     document.querySelector("#button-addtolist").addEventListener("click", TaskField.addByUserInput);
