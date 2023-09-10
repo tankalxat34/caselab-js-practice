@@ -8,6 +8,9 @@
     --background: #e0e0e0;
     --background-task: #e0e0e0;
 
+    --negative: #ff5a5a;
+    --positive: #5aff78;
+
     --foreground: #253449;
 
     /* Fonts */
@@ -63,7 +66,7 @@ input.neu {
 
     border-color: white;
     border-width: 0;
-    border-radius: 20px;
+    border-radius: 10px;
     background: #ebebeb;
     box-shadow: inset 5px 5px 10px #cacaca,
         inset -5px -5px 10px #ffffff;
@@ -73,9 +76,37 @@ button {
     font-size: calc(var(--font-size) - 4px);
 }
 
-div.neu:hover {
+div.kbmain {
+    text-align: left;
+}
+
+div.neu.taskelem:hover {
     box-shadow: 2px 2px 4px #cacaca,
         -2px -2px 4px #ffffff;
+}
+
+button.kbbutton {
+    background-color: #00000000;
+    color: var(--foreground);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 10px;
+    transition: all .4s;
+
+    font-size: calc(var(--font-size) - 4px);
+}
+
+button.kbbutton:hover {
+    background: #ebebeb;
+    box-shadow: 3.5px 3.5px 10px #cacaca,
+        -3.5px -3.5px 10px #ffffff;
+}
+
+button.kbbutton:active {
+    background: #ebebeb;
+    box-shadow: inset 3.5px 3.5px 10px #cacaca,
+        inset -3.5px -3.5px 10px #ffffff;
 }
 
 button.neu {
@@ -100,8 +131,7 @@ button.neu:active {
 /* Идентификация по id */
 
 #input-field {
-    margin: 0;
-    text-align: center;
+    margin: 7px;
     display: flexbox;
     z-index: 1;
 
@@ -113,7 +143,7 @@ button.neu:active {
 
 #input-field input {
     padding: 10px 20px;
-    width: 85vw;
+    width: 70vmin;
 }
 
 #input-field button {
@@ -154,7 +184,7 @@ button.neu:active {
 
     transition: all 0.25s ease-in-out;
 
-    border-radius: 17px;
+    border-radius: 10px;
     background: #ebebeb;
     box-shadow: 5px 5px 10px #cacaca,
         -5px -5px 10px #ffffff;
@@ -175,11 +205,11 @@ button.neu:active {
     padding: 25px;
 
     opacity: .75;
-    cursor: pointer;
     transition: all 0.2s ease-out;
+    position: relative;
 }
 
-.taskelem.show {
+.taskelem.show1 {
     padding: 25px;
 
     height: 300px;
@@ -194,13 +224,27 @@ button.neu:active {
 
 
 .task-keyboard {
-    display: none;
+    padding: 0 0px;
+    top: 0;
+    right: 0;
     opacity: 0;
-    transition: opacity .19s ease-out;
+    position: absolute;
+    transition: all .2s;
+}
+
+.task-keyboard button {
+    padding: 25px 20px;
+}
+
+.task-keyboard button.keyboard_delete:hover {
+    background-color: var(--negative);
+}
+
+.task-keyboard button.keyboard_complete:hover {
+    background-color: var(--positive);
 }
 
 .task-keyboard.show {
-    display: block;
     opacity: 1;
 }
 
@@ -226,7 +270,6 @@ button.neu:active {
     text-overflow: inherit;
 
     font-weight: 500;
-
 
     max-height: 15vh;
     opacity: 1;

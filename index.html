@@ -13,25 +13,22 @@
 </head>
 <body>
 
-    <div style="margin: 5% 2%; text-align: center;" id="top">
+    <div style="margin: 2% 1%; text-align: center;" id="top">
         <h1>ToDo List Manager</h1>
         <p>Save and manage your tasks in Neumorphism style💙</p>
         <p>Doubleclick on actual task - complete it, on completed task - delete it</p>
-        <div id="kb-manage_fields">
-            <button id="kbmain-show-even" class="neu m0" style="margin: 3% 7px;">Show even-numbered</button>
-            <button id="kbmain-show-odd" class="neu m0" style="margin: 3% 7px;">Show the odd ones</button>
-            <button id="kbmain-shift" title="Remove the first task from field" class="neu m0" style="margin: 3% 7px;">Shift</button>
-            <button id="kbmain-pop" title="Remove the last task from field" class="neu m0" style="margin: 3% 7px;">Pop</button>
+        <div id="kb-manage_fields" class="neu kbmain">
+            <div id="input-field">
+                <input class="neu m0" type="text" name="user-input" id="user-input" placeholder="Write your task here...">
+                <button id="button-addtolist" class="m0"><span class="i">+</span></button>
+            </div>
+            <button id="kbmain-show-even" class="m0 kbbutton">Even-numbered</button>
+            <button id="kbmain-show-odd" class="m0 kbbutton">The odd ones</button>
+            <button id="kbmain-shift" title="Remove the first task from field" class="m0 kbbutton">Shift</button>
+            <button id="kbmain-pop" title="Remove the last task from field" class="m0 kbbutton">Pop</button>
         </div>
     </div>
-
-    <div class="center-container">
-        <div id="input-field" style="margin: auto;">
-            <input class="neu m0" type="text" name="user-input" id="user-input" placeholder="Write here...">
-            <button id="button-addtolist" class="m0"><span class="i">+</span></button>
-        </div>
-    </div>
-    
+   
     <div id="all-tasks">
         <h2 id="h2-actual_tasks">Actual tasks</h2>
         <div id="task-field">

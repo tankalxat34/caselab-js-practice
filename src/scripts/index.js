@@ -131,24 +131,21 @@ var TaskField = {
         let TASK_ID = task_id || new Date().getTime();
 
         let div_keyboard = document.createElement("div");
-        div_keyboard.style.marginLeft = "auto";
-        div_keyboard.style.left = 0;
-        div_keyboard.style.position = "inherit";
-        div_keyboard.classList = "task-keyboard"
+        div_keyboard.classList = "task-keyboard neu"
 
         if (DOM_field === TaskField.DOM) {
             let kb_complete = document.createElement("button");
-            kb_complete.classList = "neu m0 keyboard_complete";
-            kb_complete.innerText = "✔ Complete";
-            kb_complete.style.margin = "20px 5px";
+            kb_complete.classList = "m0 keyboard_complete kbbutton";
+            kb_complete.innerText = "✔";
+            // kb_complete.style.margin = "20px 5px";
             kb_complete.addEventListener("click", () => this.complete(TASK_ID));
             div_keyboard.appendChild(kb_complete);
         }
 
         let kb_delete = document.createElement("button");
-        kb_delete.classList = "neu m0 keyboard_delete";
-        kb_delete.innerText = "✖ Delete";
-        kb_delete.style.margin = "20px 5px";
+        kb_delete.classList = "m0 keyboard_delete kbbutton";
+        kb_delete.innerText = "✖";
+        // kb_delete.style.margin = "20px 5px";
         kb_delete.addEventListener("click", () => this.rm(TASK_ID));
         div_keyboard.appendChild(kb_delete);
 
@@ -176,16 +173,26 @@ var TaskField = {
             }
         });
 
-        div.addEventListener("click", () => {
-            div.classList.add("show");
-            div_text.classList.add("show");
+        div.addEventListener("mouseover", () => {
             div_keyboard.classList.add("show");
+            div_text.classList.add("show");
         });
+
         div.addEventListener("mouseleave", () => {
-            div.classList.remove("show");
-            div_text.classList.remove("show");
             div_keyboard.classList.remove("show");
+            div_text.classList.remove("show");
         });
+
+        // div.addEventListener("click", () => {
+        //     div.classList.add("show");
+        //     div_text.classList.add("show");
+        //     div_keyboard.classList.add("show");
+        // });
+        // div.addEventListener("mouseleave", () => {
+        //     div.classList.remove("show");
+        //     div_text.classList.remove("show");
+        //     div_keyboard.classList.remove("show");
+        // });
 
         if (DOM_field === this.DOM) {
             DOM_field.after(div);
